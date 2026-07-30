@@ -1,0 +1,186 @@
+---
+import { Image } from 'astro:assets';
+import mainWindow from '../assets/main-window.png';
+import type { SiteText } from '../content/translations';
+import '../styles/global.css';
+
+interface Props {
+  text: SiteText;
+  alternatePath: string;
+}
+
+const { text, alternatePath } = Astro.props;
+const releaseUrl = 'https://github.com/a26413768/map_stacker-releases/releases/latest';
+const repositoryUrl = 'https://github.com/a26413768/map_stacker-releases';
+const issuesUrl = `${repositoryUrl}/issues`;
+const reportUrl = `${repositoryUrl}/issues/new`;
+const base = import.meta.env.BASE_URL;
+const localPath = (path: string) => `${base}/${path}`.replace(/\/+/g, '/');
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const englishUrl = new URL(localPath(''), Astro.site);
+const traditionalChineseUrl = new URL(localPath('zh-tw/'), Astro.site);
+---
+
+<!doctype html>
+<html lang={text.lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#20252b" />
+    <meta name="description" content={text.description} />
+    <meta property="og:title" content={text.pageTitle} />
+    <meta property="og:description" content={text.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={text.lang === 'zh-TW' ? 'zh_TW' : 'en_US'} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="zh-Hant-TW" href={traditionalChineseUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
+    <link rel="icon" href={localPath('favicon.ico')} sizes="any" />
+    <link rel="apple-touch-icon" href={localPath('icon.png')} />
+    <title>{text.pageTitle}</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-content">
+        <a class="brand" href="#top">
+          <img src={localPath('icon.png')} alt="" width="42" height="42" />
+          <span>MapStacker</span>
+        </a>
+        <div class="header-navigation">
+          <nav aria-label="Main navigation">
+            <a href="#features">{text.nav.features}</a>
+            <a href="#download">{text.nav.download}</a>
+            <a href="#support">{text.nav.support}</a>
+            <a href={repositoryUrl}>GitHub</a>
+          </nav>
+          <a class="language-link" href={localPath(alternatePath)} hreflang={text.lang === 'en' ? 'zh-Hant-TW' : 'en'}>
+            <span class="visually-hidden">{text.languageLabel}: </span>{text.languageLinkText}
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="intro content-width">
+        <div class="intro-text">
+          <h1>MapStacker</h1>
+          <p class="summary">{text.intro.summary}</p>
+          <p>{text.intro.details}</p>
+          <div class="intro-actions">
+            <a class="primary-link" href="#download">{text.intro.download}</a>
+            <a href={releaseUrl}>{text.intro.latestRelease}</a>
+          </div>
+          <p class="availability">{text.intro.availability}</p>
+        </div>
+        <img class="app-icon" src={localPath('icon.png')} alt="MapStacker" width="180" height="180" />
+      </section>
+
+      <section class="screenshot content-width" aria-labelledby="screenshot-title">
+        <h2 id="screenshot-title">{text.screenshot.title}</h2>
+        <figure>
+          <div class="screenshot-frame">
+            <Image
+              class="application-screenshot"
+              src={mainWindow}
+              alt={text.screenshot.alt}
+              widths={[780, 1200, 1560, 1850]}
+              sizes="(max-width: 900px) 94vw, 1080px"
+              loading="eager"
+            />
+          </div>
+          <figcaption>{text.screenshot.caption}</figcaption>
+        </figure>
+      </section>
+
+      <section class="content-section content-width" id="features">
+        <h2>{text.features.title}</h2>
+        <div class="two-columns">
+          <div>
+            {text.features.groups.slice(0, 2).map((group) => (
+              <section class="feature-group">
+                <h3>{group.title}</h3>
+                <ul>{group.items.map((item) => <li>{item}</li>)}</ul>
+              </section>
+            ))}
+          </div>
+          <div>
+            {text.features.groups.slice(2).map((group) => (
+              <section class="feature-group">
+                <h3>{group.title}</h3>
+                <ul>{group.items.map((item) => <li>{item}</li>)}</ul>
+              </section>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section class="content-section content-width">
+        <h2>{text.workflow.title}</h2>
+        <ol class="workflow-list">
+          {text.workflow.steps.map((step) => (
+            <li><strong>{step.title}</strong> {step.text}</li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="content-section content-width" id="download">
+        <div class="section-title-row">
+          <div>
+            <h2>{text.download.title}</h2>
+            <p>{text.download.intro}</p>
+          </div>
+          <a href={releaseUrl}>{text.download.releaseNotes}</a>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>{text.download.columns.platform}</th>
+                <th>{text.download.columns.requirements}</th>
+                <th>{text.download.columns.package}</th>
+                <th>{text.download.columns.notes}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {text.download.platforms.map((download) => (
+                <tr>
+                  <td><strong>{download.platform}</strong></td>
+                  <td>{download.requirements}</td>
+                  <td><a href={`${releaseUrl}/download/${download.file}`}>{download.file}</a></td>
+                  <td>{download.notes}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="download-note">
+          {text.download.archiveNoteBefore} <code>{text.download.archiveNoteChecksum}</code> {text.download.archiveNoteAfter}
+        </p>
+      </section>
+
+      <section class="content-section content-width" id="support">
+        <h2>{text.support.title}</h2>
+        <p>{text.support.paragraph1}</p>
+        <p>{text.support.paragraph2}</p>
+        <div class="support-links">
+          <a class="primary-link" href={reportUrl}>{text.support.newIssue}</a>
+          <a href={issuesUrl}>{text.support.browseIssues}</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="content-width footer-content">
+        <span>MapStacker</span>
+        <nav aria-label="Footer navigation">
+          <a href={repositoryUrl}>GitHub</a>
+          <a href={releaseUrl}>{text.footer.releases}</a>
+          <a href={issuesUrl}>{text.footer.issues}</a>
+        </nav>
+        <small>© 2026 a26413768</small>
+      </div>
+    </footer>
+  </body>
+</html>
