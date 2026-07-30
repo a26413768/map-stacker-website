@@ -206,6 +206,9 @@ figure picture,
 figure picture img {
   display: block;
   width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
 }
 
 figure picture {
