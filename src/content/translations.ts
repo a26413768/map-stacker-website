@@ -1,11 +1,10 @@
-export type Locale = 'en' | 'zh-TW';
+export type Locale = 'en' | 'zh-TW' | 'zh-CN' | 'ja' | 'de' | 'fr' | 'es' | 'it';
 
 export interface SiteText {
   lang: Locale;
   pageTitle: string;
   description: string;
   languageLabel: string;
-  languageLinkText: string;
   nav: {
     features: string;
     download: string;
@@ -69,7 +68,6 @@ export const en: SiteText = {
   pageTitle: 'MapStacker',
   description: 'MapStacker is a desktop application for stacking lunar and planetary SER image sequences.',
   languageLabel: 'Language',
-  languageLinkText: '繁體中文',
   nav: {
     features: 'Features',
     download: 'Download',
@@ -184,12 +182,122 @@ export const en: SiteText = {
   },
 };
 
+export const de: SiteText = {
+  lang: 'de',
+  pageTitle: 'MapStacker',
+  description: 'MapStacker ist eine Desktop-Anwendung zum Stacken von Mond- und Planetenbildsequenzen im SER-Format.',
+  languageLabel: 'Sprache',
+  nav: { features: 'Funktionen', download: 'Herunterladen', support: 'Support' },
+  intro: {
+    summary: 'MapStacker ist eine Desktop-Anwendung zum Stacken monochromer und farbiger Mond- oder Planetenbildsequenzen, die in SER-Dateien gespeichert sind.',
+    details: 'Die Anwendung bietet Bildqualitätsanalyse, globale Stabilisierung, mehrere Ausrichtungspunkte, lokale Bildauswahl, netzbasiertes Stacken, Drizzle, Farbausrichtung und 16-Bit-TIFF-Ausgabe.',
+    download: 'MapStacker herunterladen',
+    latestRelease: 'Neueste Version ansehen',
+    availability: 'Verfügbar für Windows, macOS und Linux. Benutzeroberflächen auf Englisch und Traditionellem Chinesisch sind enthalten.',
+  },
+  screenshot: {
+    title: 'Programmfenster',
+    alt: 'MapStacker-Hauptfenster mit einem Mondbild und seinen Ausrichtungspunkten',
+    caption: 'Das Hauptfenster enthält Verarbeitungseinstellungen, Bildnavigation, Ausrichtungspunkte und eine Bildvorschau.',
+  },
+  features: {
+    title: 'Funktionen',
+    groups: [
+      { title: 'Eingabe und Bildauswahl', items: ['Monochrome, RGB- und Bayer-CFA-SER-Eingabe', 'Bildqualitätsbewertung vor dem Resampling', 'Manuelle Bildausschlüsse und Referenzbildauswahl', 'Unabhängige lokale Bildauswahl für jeden Ausrichtungspunkt'] },
+      { title: 'Ausrichtung', items: ['Globale Bildstabilisierung mittels Phasenkorrelation oder Schwerpunkt', 'Automatische Ausrichtungspunkt-Platzierung auf Basis eines zentroiden Voronoi-Gitters', 'Subpixelgenaue lokale Ausrichtung mit Ausreißerbehandlung'] },
+      { title: 'Stacken und Farbe', items: ['Stückweise affines Netz-Stacken', 'Drizzle-Verarbeitung für monochrome, RGB- und Bayer-Daten', 'Mehrere globale und lokale RGB-Ausrichtungsverfahren', 'Stapelverarbeitung von SER-Dateien in einem Ordner'] },
+      { title: 'Ausgabe', items: ['Automatisches Zuschneiden und optionale Ausgabezentrierung', '16-Bit-TIFF-Ausgabe', 'Text-Sidecar mit Einstellungen, Quellmetadaten, Bildauswahl und Ausrichtungspunkten'] },
+    ],
+  },
+  workflow: {
+    title: 'Typischer Arbeitsablauf',
+    steps: [
+      { title: 'SER-Datei öffnen.', text: 'MapStacker liest die Aufnahme und ihre Metadaten.' },
+      { title: 'Bildqualität analysieren.', text: 'Die Bewertung prüfen und ungeeignete Bilder bei Bedarf ausschließen.' },
+      { title: 'Sequenz stabilisieren.', text: 'Globale Bewegung schätzen und korrigieren.' },
+      { title: 'Ausrichtungspunkte setzen.', text: 'Automatische Platzierung verwenden oder die Punkte manuell anpassen.' },
+      { title: 'Stacken ausführen.', text: 'Bildanteile, Stackingmethode und Farboptionen auswählen.' },
+      { title: 'Ergebnis exportieren.', text: 'Bild als 16-Bit-TIFF mit Verarbeitungsprotokoll speichern.' },
+    ],
+  },
+  download: {
+    title: 'Herunterladen', intro: 'Die vorgefertigten Pakete erfordern keine Python-Installation.', releaseNotes: 'Versionshinweise und Prüfsummen',
+    columns: { platform: 'Plattform', requirements: 'Systemvoraussetzungen', package: 'Paket', notes: 'Hinweise' },
+    platforms: [
+      { platform: 'Windows', requirements: 'Windows 10 oder 11 (64-Bit)', file: 'MapStacker-windows-x64.zip', notes: 'Archiv entpacken und MapStacker.exe ausführen.' },
+      { platform: 'macOS', requirements: 'Apple Silicon (arm64)', file: 'MapStacker-macos-arm64.zip', notes: 'Unsignierte Anwendung. Beim ersten Start mit der rechten Maustaste klicken und „Öffnen“ wählen.' },
+      { platform: 'Linux', requirements: 'x64, glibc 2.31 oder neuer', file: 'MapStacker-linux-x64.zip', notes: 'Erfordert eine grafische X11-Umgebung mit Qt xcb-Unterstützung.' },
+    ],
+    archiveNoteBefore: 'Die Pakete werden als ZIP-Archive verteilt. Laden Sie die entsprechende', archiveNoteChecksum: '.sha256', archiveNoteAfter: '-Datei von der Release-Seite herunter, um das Archiv zu überprüfen.',
+  },
+  support: {
+    title: 'Support und Fehlermeldungen',
+    paragraph1: 'Fehlermeldungen und Funktionsanfragen werden über GitHub Issues verwaltet. Bevor Sie einen Bericht erstellen, prüfen Sie bitte, ob das Problem bereits gemeldet wurde.',
+    paragraph2: 'Ein hilfreicher Fehlerbericht sollte die MapStacker-Version, das Betriebssystem, die Schritte zur Reproduktion des Problems sowie relevante Screenshots oder Protokolldateien enthalten.',
+    newIssue: 'Neues Issue erstellen', browseIssues: 'Vorhandene Issues durchsuchen',
+  },
+  footer: { releases: 'Versionen', issues: 'Issues' },
+};
+
+export const fr: SiteText = {
+  lang: 'fr',
+  pageTitle: 'MapStacker',
+  description: "MapStacker est une application de bureau pour l'empilement de séquences d'images SER lunaires et planétaires.",
+  languageLabel: 'Langue',
+  nav: { features: 'Fonctionnalités', download: 'Téléchargement', support: 'Assistance' },
+  intro: {
+    summary: "MapStacker est une application de bureau pour l'empilement de séquences d'images lunaires ou planétaires, monochromes ou en couleur, stockées dans des fichiers SER.",
+    details: "Elle propose l'analyse de la qualité des images, la stabilisation globale, plusieurs points d'alignement, la sélection locale d'images, l'empilement par maillage, le Drizzle, l'alignement des couleurs et l'exportation en TIFF 16 bits.",
+    download: 'Télécharger MapStacker', latestRelease: 'Voir la dernière version',
+    availability: 'Disponible pour Windows, macOS et Linux. Les interfaces en anglais et en chinois traditionnel sont incluses.',
+  },
+  screenshot: {
+    title: "Fenêtre de l'application", alt: "Fenêtre principale de MapStacker affichant une image lunaire et ses points d'alignement", caption: "La fenêtre principale comprend les commandes de traitement, la navigation entre les images, les points d'alignement et un aperçu de l'image.",
+  },
+  features: {
+    title: 'Fonctionnalités',
+    groups: [
+      { title: 'Entrée et sélection des images', items: ['Entrée SER monochromatique, RGB et Bayer CFA', 'Classement de la qualité des images avant le rééchantillonnage', "Exclusion manuelle des images et sélection de l'image de référence", "Sélection locale d'images indépendante pour chaque point d'alignement"] },
+      { title: 'Alignement', items: ['Stabilisation globale par corrélation de phase ou centre de gravité', "Placement automatique des points d'alignement par grille de Voronoï centroïdale", 'Alignement local sous-pixel avec gestion des valeurs aberrantes'] },
+      { title: 'Empilement et couleur', items: ['Empilement par maillage affine par morceaux', 'Traitement Drizzle pour données monochromes, RGB et Bayer', "Plusieurs méthodes d'alignement RGB globales et locales", "Traitement par lots des fichiers SER d'un dossier"] },
+      { title: 'Sortie', items: ['Recadrage automatique et centrage optionnel de la sortie', 'Exportation en TIFF 16 bits', "Fichier sidecar texte contenant les paramètres, les métadonnées sources, la sélection des images et les points d'alignement"] },
+    ],
+  },
+  workflow: {
+    title: 'Flux de travail typique',
+    steps: [
+      { title: 'Ouvrir un fichier SER.', text: 'MapStacker lit la capture et ses métadonnées.' },
+      { title: 'Analyser la qualité des images.', text: 'Consulter le classement et exclure les images inadaptées si nécessaire.' },
+      { title: 'Stabiliser la séquence.', text: 'Estimer et corriger le mouvement global.' },
+      { title: "Placer les points d'alignement.", text: 'Utiliser le placement automatique ou ajuster les points manuellement.' },
+      { title: "Lancer l'empilement.", text: "Choisir les pourcentages d'images, la méthode d'empilement et les options de couleur." },
+      { title: 'Exporter le résultat.', text: "Enregistrer l'image en TIFF 16 bits avec son enregistrement de traitement." },
+    ],
+  },
+  download: {
+    title: 'Téléchargement', intro: "Les paquets précompilés ne nécessitent pas d'installation de Python.", releaseNotes: 'Notes de version et sommes de contrôle',
+    columns: { platform: 'Plateforme', requirements: 'Configuration requise', package: 'Paquet', notes: 'Remarques' },
+    platforms: [
+      { platform: 'Windows', requirements: 'Windows 10 ou 11 (64 bits)', file: 'MapStacker-windows-x64.zip', notes: "Décompresser l'archive et exécuter MapStacker.exe." },
+      { platform: 'macOS', requirements: 'Apple Silicon (arm64)', file: 'MapStacker-macos-arm64.zip', notes: 'Application non signée. Au premier lancement, cliquez avec le bouton droit et choisissez Ouvrir.' },
+      { platform: 'Linux', requirements: 'x64, glibc 2.31 ou version ultérieure', file: 'MapStacker-linux-x64.zip', notes: 'Nécessite un environnement graphique X11 avec prise en charge de Qt xcb.' },
+    ],
+    archiveNoteBefore: 'Les paquets sont distribués sous forme d’archives ZIP. Téléchargez le fichier', archiveNoteChecksum: '.sha256', archiveNoteAfter: 'correspondant depuis la page de la version pour vérifier l’archive.',
+  },
+  support: {
+    title: 'Assistance et signalement de problèmes',
+    paragraph1: "Les rapports de bogues et les demandes de fonctionnalités sont gérés via GitHub Issues. Avant d'ouvrir un rapport, vérifiez si le même problème a déjà été signalé.",
+    paragraph2: "Un rapport de bogue utile doit inclure la version de MapStacker, le système d'exploitation, les étapes pour reproduire le problème, ainsi que toute capture d'écran ou journal pertinent.",
+    newIssue: 'Ouvrir un nouveau problème', browseIssues: 'Parcourir les problèmes existants',
+  },
+  footer: { releases: 'Versions', issues: 'Problèmes' },
+};
+
 export const zhTW: SiteText = {
   lang: 'zh-TW',
   pageTitle: 'MapStacker',
   description: 'MapStacker 是用於疊合月球與行星彩色或單色 SER 影像序列的桌面應用程式。',
   languageLabel: '語言',
-  languageLinkText: 'English',
   nav: {
     features: '功能',
     download: '下載',

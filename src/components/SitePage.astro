@@ -1,15 +1,15 @@
 ---
 import { Image } from 'astro:assets';
 import mainWindow from '../assets/main-window.png';
-import type { SiteText } from '../content/translations';
+import { locales, type LocaleDefinition } from '../content/locales';
 import '../styles/global.css';
 
 interface Props {
-  text: SiteText;
-  alternatePath: string;
+  locale: LocaleDefinition;
 }
 
-const { text, alternatePath } = Astro.props;
+const { locale } = Astro.props;
+const { text } = locale;
 const releaseUrl = 'https://github.com/a26413768/map_stacker-releases/releases/latest';
 const repositoryUrl = 'https://github.com/a26413768/map_stacker-releases';
 const issuesUrl = `${repositoryUrl}/issues`;
@@ -17,8 +17,6 @@ const reportUrl = `${repositoryUrl}/issues/new`;
 const base = import.meta.env.BASE_URL;
 const localPath = (path: string) => `${base}/${path}`.replace(/\/+/g, '/');
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const englishUrl = new URL(localPath(''), Astro.site);
-const traditionalChineseUrl = new URL(localPath('zh-tw/'), Astro.site);
 ---
 
 <!doctype html>
@@ -31,11 +29,12 @@ const traditionalChineseUrl = new URL(localPath('zh-tw/'), Astro.site);
     <meta property="og:title" content={text.pageTitle} />
     <meta property="og:description" content={text.description} />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content={text.lang === 'zh-TW' ? 'zh_TW' : 'en_US'} />
+    <meta property="og:locale" content={locale.ogLocale} />
     <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en" href={englishUrl} />
-    <link rel="alternate" hreflang="zh-Hant-TW" href={traditionalChineseUrl} />
-    <link rel="alternate" hreflang="x-default" href={englishUrl} />
+    {locales.map((entry) => (
+      <link rel="alternate" hreflang={entry.hreflang} href={new URL(localPath(entry.path), Astro.site)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(localPath(''), Astro.site)} />
     <link rel="icon" href={localPath('favicon.ico')} sizes="any" />
     <link rel="apple-touch-icon" href={localPath('icon.png')} />
     <title>{text.pageTitle}</title>
@@ -54,9 +53,20 @@ const traditionalChineseUrl = new URL(localPath('zh-tw/'), Astro.site);
             <a href="#support">{text.nav.support}</a>
             <a href={repositoryUrl}>GitHub</a>
           </nav>
-          <a class="language-link" href={localPath(alternatePath)} hreflang={text.lang === 'en' ? 'zh-Hant-TW' : 'en'}>
-            <span class="visually-hidden">{text.languageLabel}: </span>{text.languageLinkText}
-          </a>
+          <details class="language-menu">
+            <summary aria-label={text.languageLabel}>{locale.name}</summary>
+            <ul>
+              {locales.map((entry) => (
+                <li>
+                  {entry.code === locale.code ? (
+                    <span aria-current="page">{entry.name}</span>
+                  ) : (
+                    <a href={localPath(entry.path)} hreflang={entry.hreflang}>{entry.name}</a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </details>
         </div>
       </div>
     </header>

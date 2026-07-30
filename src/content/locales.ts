@@ -1,0 +1,24 @@
+import type { Locale, SiteText } from './translations';
+import { de, en, fr, zhTW } from './translations';
+
+export interface LocaleDefinition {
+  code: Locale;
+  path: string;
+  name: string;
+  hreflang: string;
+  ogLocale: string;
+  text: SiteText;
+}
+
+export const locales: LocaleDefinition[] = [
+  { code: 'en', path: '', name: 'English', hreflang: 'en', ogLocale: 'en_US', text: en },
+  { code: 'zh-TW', path: 'zh-tw/', name: '繁體中文', hreflang: 'zh-Hant-TW', ogLocale: 'zh_TW', text: zhTW },
+  { code: 'de', path: 'de/', name: 'Deutsch', hreflang: 'de', ogLocale: 'de_DE', text: de },
+  { code: 'fr', path: 'fr/', name: 'Français', hreflang: 'fr', ogLocale: 'fr_FR', text: fr },
+];
+
+export function getLocale(code: Locale): LocaleDefinition {
+  const locale = locales.find((entry) => entry.code === code);
+  if (!locale) throw new Error(`Unknown locale: ${code}`);
+  return locale;
+}
