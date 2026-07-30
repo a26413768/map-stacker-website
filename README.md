@@ -16,11 +16,12 @@ The development server runs at `http://localhost:4321`.
 ## Production build
 
 ```sh
+npm run check
 npm run build
 npm run preview
 ```
 
-Astro writes the static site to `dist/`.
+Astro writes the eight localized static pages to `dist/`. The site is available in English, Traditional Chinese, Simplified Chinese, Japanese, German, French, Spanish, and Italian.
 
 ## Deployment
 
