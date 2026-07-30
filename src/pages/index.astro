@@ -12,44 +12,21 @@ const base = import.meta.env.BASE_URL;
 const downloads = [
   {
     platform: 'Windows',
-    detail: 'Windows 10 / 11 · x64',
+    requirements: 'Windows 10 or 11 (64-bit)',
     file: 'MapStacker-windows-x64.zip',
-    icon: 'windows',
+    notes: 'Unzip the archive and run MapStacker.exe.',
   },
   {
     platform: 'macOS',
-    detail: 'Apple Silicon · arm64',
+    requirements: 'Apple Silicon (arm64)',
     file: 'MapStacker-macos-arm64.zip',
-    icon: 'apple',
+    notes: 'Unsigned application. On first launch, right-click and choose Open.',
   },
   {
     platform: 'Linux',
-    detail: 'glibc 2.31+ · x64',
+    requirements: 'x64, glibc 2.31 or newer',
     file: 'MapStacker-linux-x64.zip',
-    icon: 'linux',
-  },
-];
-
-const features = [
-  {
-    number: '01',
-    title: 'Quality-first selection',
-    text: 'Rank frames before resampling, reject weak captures manually, and select the sharpest frames independently around every alignment point.',
-  },
-  {
-    number: '02',
-    title: 'Precision alignment',
-    text: 'Combine global stabilization with sub-pixel local alignment, automatic CVT point placement, and robust outlier handling.',
-  },
-  {
-    number: '03',
-    title: 'Flexible stacking',
-    text: 'Use mesh warping or Drizzle for monochrome, RGB, and Bayer SER captures, with automatic memory safeguards.',
-  },
-  {
-    number: '04',
-    title: 'Reproducible output',
-    text: 'Export 16-bit TIFF files with a sidecar record of settings, selected frames, source metadata, and alignment points.',
+    notes: 'Requires a graphical X11 environment with Qt xcb support.',
   },
 ];
 ---
@@ -59,173 +36,195 @@ const features = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#080b12" />
+    <meta name="theme-color" content="#20252b" />
     <meta
       name="description"
-      content="MapStacker is a free desktop tool for stacking lunar and planetary SER captures with precise multi-point alignment."
+      content="MapStacker is a desktop application for stacking lunar and planetary SER image sequences."
     />
-    <meta property="og:title" content="MapStacker — Detail from every frame" />
+    <meta property="og:title" content="MapStacker" />
     <meta
       property="og:description"
-      content="Free lunar and planetary image stacking for Windows, macOS, and Linux."
+      content="Desktop software for stacking lunar and planetary SER image sequences."
     />
     <meta property="og:type" content="website" />
     <link rel="icon" href={`${base}favicon.ico`} sizes="any" />
     <link rel="apple-touch-icon" href={`${base}icon.png`} />
-    <title>MapStacker — Lunar & planetary image stacking</title>
+    <title>MapStacker</title>
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="MapStacker home">
-        <img src={`${base}icon.png`} alt="" width="38" height="38" />
-        <span>MapStacker</span>
-      </a>
-      <nav aria-label="Main navigation">
-        <a href="#features">Features</a>
-        <a href="#download">Download</a>
-        <a href="#support">Support</a>
-      </nav>
-      <a class="header-github" href={repositoryUrl} target="_blank" rel="noreferrer">
-        GitHub
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5.2 3.2h7.6v7.6h-1.4V5.6l-7.7 7.7-1-1 7.7-7.7H5.2V3.2Z" /></svg>
-      </a>
+      <div class="header-content">
+        <a class="brand" href="#top">
+          <img src={`${base}icon.png`} alt="" width="42" height="42" />
+          <span>MapStacker</span>
+        </a>
+        <nav aria-label="Main navigation">
+          <a href="#features">Features</a>
+          <a href="#download">Download</a>
+          <a href="#support">Support</a>
+          <a href={repositoryUrl}>GitHub</a>
+        </nav>
+      </div>
     </header>
 
     <main id="top">
-      <section class="hero section-shell">
-        <div class="hero-glow" aria-hidden="true"></div>
-        <div class="eyebrow"><span></span> LUNAR &amp; PLANETARY STACKING</div>
-        <h1>Turn fleeting frames<br />into lasting <em>detail.</em></h1>
-        <p class="hero-copy">
-          A free desktop tool for stacking monochrome and colour SER captures with
-          precise multi-point alignment—built for lucky imaging.
-        </p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#download">
-            Download MapStacker
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2v10m0 0 4-4m-4 4L6 8M3 14v3h14v-3" /></svg>
-          </a>
-          <a class="button button-secondary" href={releaseUrl} target="_blank" rel="noreferrer">
-            View latest release
-          </a>
-        </div>
-        <div class="hero-meta">
-          <span>Free to use</span><i></i><span>No Python required</span><i></i><span>English &amp; 繁體中文</span>
-        </div>
-      </section>
-
-      <section class="app-preview section-shell" aria-label="MapStacker application preview">
-        <div class="preview-aura" aria-hidden="true"></div>
-        <div class="window-frame">
-          <div class="window-bar">
-            <div class="window-dots"><span></span><span></span><span></span></div>
-            <div class="window-title">MapStacker</div>
-            <div></div>
-          </div>
-          <Image
-            src={mainWindow}
-            alt="MapStacker interface showing a detailed lunar capture with alignment points"
-            widths={[780, 1200, 1560]}
-            sizes="(max-width: 900px) 94vw, 1200px"
-            loading="eager"
-          />
-        </div>
-        <div class="preview-caption">
-          <span>Everything in view</span>
-          <p>Review quality, place alignment points, tune the stack, and inspect the result in one focused workspace.</p>
-        </div>
-      </section>
-
-      <section class="features section-shell" id="features">
-        <div class="section-heading">
-          <div>
-            <div class="eyebrow"><span></span> BUILT FOR REAL CAPTURES</div>
-            <h2>More signal.<br /><em>Less guesswork.</em></h2>
-          </div>
+      <section class="intro content-width">
+        <div class="intro-text">
+          <h1>MapStacker</h1>
+          <p class="summary">
+            MapStacker is a desktop application for stacking monochrome and colour
+            lunar or planetary image sequences stored in SER files.
+          </p>
           <p>
-            From frame ranking to final TIFF, MapStacker keeps the workflow visible
-            and gives you control where it matters.
+            It provides frame quality analysis, global stabilization, multiple
+            alignment points, local frame selection, mesh-based stacking, Drizzle,
+            colour alignment, and 16-bit TIFF output.
+          </p>
+          <div class="intro-actions">
+            <a class="primary-link" href="#download">Download MapStacker</a>
+            <a href={releaseUrl}>View the latest release</a>
+          </div>
+          <p class="availability">
+            Available for Windows, macOS, and Linux. English and Traditional Chinese
+            interfaces are included.
           </p>
         </div>
-        <div class="feature-grid">
-          {features.map((feature) => (
-            <article class="feature-card">
-              <span class="feature-number">{feature.number}</span>
-              <h3>{feature.title}</h3>
-              <p>{feature.text}</p>
-            </article>
-          ))}
+        <img class="app-icon" src={`${base}icon.png`} alt="MapStacker application icon" width="180" height="180" />
+      </section>
+
+      <section class="screenshot content-width" aria-labelledby="screenshot-title">
+        <h2 id="screenshot-title">Application window</h2>
+        <figure>
+          <Image
+            src={mainWindow}
+            alt="MapStacker main window displaying a lunar image and its alignment points"
+            widths={[780, 1200, 1560]}
+            sizes="(max-width: 900px) 94vw, 1080px"
+            loading="eager"
+          />
+          <figcaption>
+            The main window contains processing controls, frame navigation, alignment
+            points, and an image preview.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="content-section content-width" id="features">
+        <h2>Features</h2>
+        <div class="two-columns">
+          <div>
+            <h3>Input and frame selection</h3>
+            <ul>
+              <li>Monochrome, RGB, and Bayer CFA SER input</li>
+              <li>Frame quality ranking before image resampling</li>
+              <li>Manual frame exclusion and reference-frame selection</li>
+              <li>Independent local frame selection for each alignment point</li>
+            </ul>
+
+            <h3>Alignment</h3>
+            <ul>
+              <li>Global frame stabilization using phase correlation or centre of gravity</li>
+              <li>Automatic alignment-point placement using a centroidal Voronoi grid</li>
+              <li>Sub-pixel local alignment with outlier handling</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Stacking and colour</h3>
+            <ul>
+              <li>Piecewise affine mesh stacking</li>
+              <li>Drizzle processing for monochrome, RGB, and Bayer data</li>
+              <li>Several global and local RGB alignment methods</li>
+              <li>Batch processing of SER files in a folder</li>
+            </ul>
+
+            <h3>Output</h3>
+            <ul>
+              <li>Automatic cropping and optional output centring</li>
+              <li>16-bit TIFF output</li>
+              <li>Text sidecar with settings, source metadata, frame selection, and alignment points</li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      <section class="workflow section-shell" aria-labelledby="workflow-title">
-        <div class="workflow-copy">
-          <div class="eyebrow"><span></span> A CLEAR WORKFLOW</div>
-          <h2 id="workflow-title">From capture<br />to stack in <em>six steps.</em></h2>
-          <p>Open a SER file, rank and review frames, stabilize, place alignment points, stack, then export a 16-bit TIFF.</p>
-          <a href={repositoryUrl} target="_blank" rel="noreferrer">Read project details <span>→</span></a>
-        </div>
-        <ol class="workflow-steps">
-          <li><span>01</span><strong>Open</strong><small>Load a mono, RGB, or Bayer SER capture.</small></li>
-          <li><span>02</span><strong>Rank</strong><small>Score sharpness and exclude unwanted frames.</small></li>
-          <li><span>03</span><strong>Stabilize</strong><small>Remove global motion before local alignment.</small></li>
-          <li><span>04</span><strong>Align</strong><small>Place and refine multiple alignment points.</small></li>
-          <li><span>05</span><strong>Stack</strong><small>Combine the strongest detail across frames.</small></li>
-          <li><span>06</span><strong>Export</strong><small>Save a 16-bit TIFF and processing record.</small></li>
+      <section class="content-section content-width">
+        <h2>Typical workflow</h2>
+        <ol class="workflow-list">
+          <li><strong>Open a SER file.</strong> MapStacker reads the capture and its metadata.</li>
+          <li><strong>Analyse frame quality.</strong> Review the ranking and exclude unsuitable frames if needed.</li>
+          <li><strong>Stabilize the sequence.</strong> Estimate and correct global movement.</li>
+          <li><strong>Place alignment points.</strong> Use automatic placement or adjust the points manually.</li>
+          <li><strong>Run the stack.</strong> Choose the frame percentages, stacking method, and colour options.</li>
+          <li><strong>Export the result.</strong> Save the image as a 16-bit TIFF with its processing record.</li>
         </ol>
       </section>
 
-      <section class="download section-shell" id="download">
-        <div class="download-panel">
-          <div class="download-heading">
-            <div class="eyebrow"><span></span> DOWNLOAD</div>
-            <h2>Choose your platform.</h2>
-            <p>Unzip and run. No Python installation needed.</p>
+      <section class="content-section content-width" id="download">
+        <div class="section-title-row">
+          <div>
+            <h2>Download</h2>
+            <p>Pre-built packages do not require a Python installation.</p>
           </div>
-          <div class="download-grid">
-            {downloads.map((download) => (
-              <a
-                class="download-card"
-                href={`${releaseUrl}/download/${download.file}`}
-                aria-label={`Download MapStacker for ${download.platform}`}
-              >
-                <div class="platform-icon" data-icon={download.icon}>
-                  {download.icon === 'windows' && <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 5.5 7.3-1v7H3v-6Zm8.3-1.2L21 3v8.5h-9.7V4.3ZM3 12.5h7.3v7L3 18.5v-6Zm8.3 0H21V21l-9.7-1.3v-7.2Z" /></svg>}
-                  {download.icon === 'apple' && <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.1 12.7c0-2.7 2.2-4 2.3-4.1a5 5 0 0 0-3.9-2.1c-1.7-.2-3.2 1-4.1 1s-2.2-1-3.7-1c-2 0-3.8 1.1-4.8 2.9-2 3.5-.5 8.7 1.4 11.5 1 1.4 2.1 2.9 3.6 2.8 1.4 0 2-1 3.8-1s2.3 1 3.8 1c1.6 0 2.6-1.4 3.5-2.8a12.7 12.7 0 0 0 1.6-3.3 4.8 4.8 0 0 1-3.5-4.9ZM14.4 4.8A5 5 0 0 0 15.6 1a5.1 5.1 0 0 0-3.4 1.8A4.7 4.7 0 0 0 11 6.4a4.2 4.2 0 0 0 3.4-1.6Z" /></svg>}
-                  {download.icon === 'linux' && <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c-2.6 0-4.3 2.4-4.3 5.4v1.2c0 1.4-.5 2.2-1.2 3.3-.8 1.1-1.8 2.5-1.9 4.9-.1 1.3.4 2 1.2 2.3.5.2 1 .1 1.4 0 .4 1.7 2.2 2.9 4.8 2.9s4.4-1.2 4.8-2.9c.4.1.9.2 1.4 0 .8-.3 1.3-1 1.2-2.3-.1-2.4-1.1-3.8-1.9-4.9-.7-1.1-1.2-1.9-1.2-3.3V7.4C16.3 4.4 14.6 2 12 2Zm-1.6 4.3c.5 0 .8.5.8 1.1s-.3 1.1-.8 1.1-.8-.5-.8-1.1.3-1.1.8-1.1Zm3.2 0c.5 0 .8.5.8 1.1s-.3 1.1-.8 1.1-.8-.5-.8-1.1.3-1.1.8-1.1ZM12 9c1 0 1.8.5 1.8 1.1 0 .5-.8 1.5-1.8 1.5s-1.8-1-1.8-1.5C10.2 9.5 11 9 12 9Zm0 4.2c2.2 0 3.7 2.2 3.7 4.2 0 1.8-1.5 2.9-3.7 2.9s-3.7-1.1-3.7-2.9c0-2 1.5-4.2 3.7-4.2Z" /></svg>}
-                </div>
-                <div><strong>{download.platform}</strong><small>{download.detail}</small></div>
-                <svg class="download-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3v10m0 0 4-4m-4 4L6 9M4 17h12" /></svg>
-              </a>
-            ))}
-          </div>
-          <div class="download-footer">
-            <span>Latest stable release</span>
-            <a href={releaseUrl} target="_blank" rel="noreferrer">Release notes &amp; SHA-256 checksums →</a>
-          </div>
+          <a href={releaseUrl}>Release notes and checksums</a>
         </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>Requirements</th>
+                <th>Package</th>
+                <th>Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {downloads.map((download) => (
+                <tr>
+                  <td><strong>{download.platform}</strong></td>
+                  <td>{download.requirements}</td>
+                  <td>
+                    <a href={`${releaseUrl}/download/${download.file}`}>{download.file}</a>
+                  </td>
+                  <td>{download.notes}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="download-note">
+          The packages are distributed as ZIP archives. Download the corresponding
+          <code>.sha256</code> file from the release page if you want to verify the archive.
+        </p>
       </section>
 
-      <section class="support section-shell" id="support">
-        <div>
-          <div class="eyebrow"><span></span> COMMUNITY SUPPORT</div>
-          <h2>Found an issue?<br /><em>Let us know.</em></h2>
-        </div>
-        <div class="support-copy">
-          <p>Check existing reports or open a new issue. Include your MapStacker version, operating system, steps to reproduce, and a screenshot or log when possible.</p>
-          <div class="support-actions">
-            <a class="button button-primary" href={reportUrl} target="_blank" rel="noreferrer">Report an issue <span>↗</span></a>
-            <a class="button button-secondary" href={issuesUrl} target="_blank" rel="noreferrer">Browse issues</a>
-          </div>
+      <section class="content-section content-width" id="support">
+        <h2>Support and issue reports</h2>
+        <p>
+          Bug reports and feature requests are managed through GitHub Issues. Before
+          opening a report, please check whether the same problem has already been reported.
+        </p>
+        <p>
+          A useful bug report should include the MapStacker version, operating system,
+          steps needed to reproduce the problem, and any relevant screenshot or log.
+        </p>
+        <div class="support-links">
+          <a class="primary-link" href={reportUrl}>Open a new issue</a>
+          <a href={issuesUrl}>Browse existing issues</a>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer section-shell">
-      <a class="brand" href="#top"><img src={`${base}icon.png`} alt="" width="34" height="34" /><span>MapStacker</span></a>
-      <p>Made for clearer views of distant worlds.</p>
-      <div><a href={repositoryUrl}>GitHub</a><a href={releaseUrl}>Releases</a><a href={issuesUrl}>Issues</a></div>
-      <small>© 2026 MapStacker</small>
+    <footer class="site-footer">
+      <div class="content-width footer-content">
+        <span>MapStacker</span>
+        <nav aria-label="Footer navigation">
+          <a href={repositoryUrl}>GitHub</a>
+          <a href={releaseUrl}>Releases</a>
+          <a href={issuesUrl}>Issues</a>
+        </nav>
+        <small>© 2026 a26413768</small>
+      </div>
     </footer>
   </body>
 </html>
