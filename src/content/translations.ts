@@ -15,6 +15,7 @@ export interface SiteText {
     details: string;
     download: string;
     latestRelease: string;
+    beta: string;
     availability: string;
   };
   screenshot: {
@@ -78,6 +79,7 @@ export const en: SiteText = {
     details: 'It provides frame quality analysis, global stabilization, multiple alignment points, local frame selection, mesh-based stacking, Drizzle, colour alignment, and 16-bit TIFF output.',
     download: 'Download MapStacker',
     latestRelease: 'View the latest release',
+    beta: 'Try the latest beta',
     availability: 'Available for Windows, macOS, and Linux. English and Traditional Chinese interfaces are included.',
   },
   screenshot: {
@@ -193,6 +195,7 @@ export const de: SiteText = {
     details: 'Die Anwendung bietet Bildqualitätsanalyse, globale Stabilisierung, mehrere Ausrichtungspunkte, lokale Bildauswahl, netzbasiertes Stacken, Drizzle, Farbausrichtung und 16-Bit-TIFF-Ausgabe.',
     download: 'MapStacker herunterladen',
     latestRelease: 'Neueste Version ansehen',
+    beta: 'Neueste Beta ausprobieren',
     availability: 'Verfügbar für Windows, macOS und Linux. Benutzeroberflächen auf Englisch und Traditionellem Chinesisch sind enthalten.',
   },
   screenshot: {
@@ -248,7 +251,7 @@ export const fr: SiteText = {
   intro: {
     summary: "MapStacker est une application de bureau pour l'empilement de séquences d'images lunaires ou planétaires, monochromes ou en couleur, stockées dans des fichiers SER.",
     details: "Elle propose l'analyse de la qualité des images, la stabilisation globale, plusieurs points d'alignement, la sélection locale d'images, l'empilement par maillage, le Drizzle, l'alignement des couleurs et l'exportation en TIFF 16 bits.",
-    download: 'Télécharger MapStacker', latestRelease: 'Voir la dernière version',
+    download: 'Télécharger MapStacker', latestRelease: 'Voir la dernière version', beta: 'Essayer la dernière bêta',
     availability: 'Disponible pour Windows, macOS et Linux. Les interfaces en anglais et en chinois traditionnel sont incluses.',
   },
   screenshot: {
@@ -308,6 +311,7 @@ export const zhTW: SiteText = {
     details: '程式提供幀品質分析、全域穩定化、多重對齊點、局部選幀、網格疊合、Drizzle、色彩對齊與 16 位元 TIFF 輸出。',
     download: '下載 MapStacker',
     latestRelease: '查看最新版本',
+    beta: '試用最新 Beta 版',
     availability: '支援 Windows、macOS 與 Linux，內建英文及繁體中文介面。',
   },
   screenshot: {

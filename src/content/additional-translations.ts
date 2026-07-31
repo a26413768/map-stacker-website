@@ -11,6 +11,7 @@ export const zhCN: SiteText = {
     details: '程序提供帧品质分析、全局稳定化、多重对齐点、局部选帧、网格叠合、Drizzle、色彩对齐与 16 位 TIFF 输出。',
     download: '下载 MapStacker',
     latestRelease: '查看最新版本',
+    beta: '试用最新 Beta 版',
     availability: '支持 Windows、macOS 与 Linux，内置英文及繁体中文界面。',
   },
   screenshot: {
@@ -73,6 +74,7 @@ export const ja: SiteText = {
     details: 'フレーム品質解析、グローバル安定化、複数のアライメントポイント、局所フレーム選択、メッシュスタッキング、Drizzle、カラーアライメント、16 ビット TIFF 出力を備えています。',
     download: 'MapStacker をダウンロード',
     latestRelease: '最新リリースを確認',
+    beta: '最新ベータ版を試す',
     availability: 'Windows・macOS・Linux に対応。英語および繁体字中国語インターフェースを収録。',
   },
   screenshot: {
@@ -135,6 +137,7 @@ export const es: SiteText = {
     details: 'Ofrece análisis de calidad de fotogramas, estabilización global, múltiples puntos de alineación, selección local de fotogramas, apilado por malla, Drizzle, alineación de color y salida en TIFF de 16 bits.',
     download: 'Descargar MapStacker',
     latestRelease: 'Ver la última versión',
+    beta: 'Probar la última beta',
     availability: 'Disponible para Windows, macOS y Linux. Se incluyen interfaces en inglés y chino tradicional.',
   },
   screenshot: {
@@ -197,6 +200,7 @@ export const it: SiteText = {
     details: 'Offre analisi della qualità dei fotogrammi, stabilizzazione globale, punti di allineamento multipli, selezione locale dei fotogrammi, stacking a griglia, Drizzle, allineamento del colore e output in TIFF a 16 bit.',
     download: 'Scarica MapStacker',
     latestRelease: "Visualizza l'ultima versione",
+    beta: "Prova l'ultima beta",
     availability: 'Disponibile per Windows, macOS e Linux. Sono incluse le interfacce in inglese e cinese tradizionale.',
   },
   screenshot: {
