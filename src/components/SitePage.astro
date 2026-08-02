@@ -22,6 +22,132 @@ const reportUrl = `${repositoryUrl}/issues/new`;
 const base = import.meta.env.BASE_URL;
 const localPath = (path: string) => `${base}/${path}`.replace(/\/+/g, '/');
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const downloadFiles = text.download.platforms.reduce(
+  (acc, item) => {
+    const file = item.file;
+    if (file.includes('windows')) acc.windows = file;
+    if (file.includes('macos')) acc.macos = file;
+    if (file.includes('linux')) acc.linux = file;
+    return acc;
+  },
+  { windows: '', macos: '', linux: '' },
+);
+
+const autoDownloadCopyByLocale = {
+  en: {
+    title: 'Recommended download for your device',
+    detecting: 'Detecting your operating system...',
+    unsupported: 'Could not detect a supported desktop operating system. Please choose a package from the table below.',
+    recommendedPrefix: 'Detected',
+    recommendedSuffix: 'on this device. Recommended package is pre-selected below.',
+    fallbackCta: 'Open latest release page',
+    ctaPrefix: 'Download',
+    manualHint: 'If this is not your target machine, use the table below to choose another package.',
+    manualHintActive: 'Need a different package? You can still select one from the table below.',
+    osWindows: 'Windows',
+    osMacos: 'macOS',
+    osLinux: 'Linux',
+  },
+  'zh-TW': {
+    title: '適用於此裝置的建議下載',
+    detecting: '正在判別您的作業系統...',
+    unsupported: '無法判別受支援的桌面作業系統，請從下方表格手動選擇下載檔案。',
+    recommendedPrefix: '已判別目前裝置為',
+    recommendedSuffix: '，下方已為您預先選好建議套件。',
+    fallbackCta: '開啟最新版本頁面',
+    ctaPrefix: '下載',
+    manualHint: '若您要下載給其他電腦使用，請改用下方表格手動選擇。',
+    manualHintActive: '如果需要其他版本，仍可在下方表格手動選擇。',
+    osWindows: 'Windows',
+    osMacos: 'macOS',
+    osLinux: 'Linux',
+  },
+  'zh-CN': {
+    title: '适用于此设备的推荐下载',
+    detecting: '正在识别您的操作系统...',
+    unsupported: '无法识别受支持的桌面操作系统，请在下方表格中手动选择安装包。',
+    recommendedPrefix: '已识别当前设备为',
+    recommendedSuffix: '，下方已为您预选推荐安装包。',
+    fallbackCta: '打开最新版本页面',
+    ctaPrefix: '下载',
+    manualHint: '如果您要下载给其他电脑使用，请在下方表格手动选择。',
+    manualHintActive: '如果需要其他版本，仍可在下方表格手动选择。',
+    osWindows: 'Windows',
+    osMacos: 'macOS',
+    osLinux: 'Linux',
+  },
+  ja: {
+    title: 'このデバイス向けの推奨ダウンロード',
+    detecting: 'お使いのOSを判定しています...',
+    unsupported: '対応するデスクトップOSを判定できませんでした。下の表から手動でパッケージを選択してください。',
+    recommendedPrefix: 'このデバイスは',
+    recommendedSuffix: 'と判定されました。推奨パッケージを下で選択済みです。',
+    fallbackCta: '最新リリースページを開く',
+    ctaPrefix: 'ダウンロード',
+    manualHint: '別のPC向けにダウンロードする場合は、下の表から手動で選択してください。',
+    manualHintActive: '別のパッケージが必要な場合は、下の表から選択できます。',
+    osWindows: 'Windows',
+    osMacos: 'macOS',
+    osLinux: 'Linux',
+  },
+  de: {
+    title: 'Empfohlener Download für dieses Gerät',
+    detecting: 'Betriebssystem wird erkannt...',
+    unsupported: 'Ein unterstütztes Desktop-Betriebssystem konnte nicht erkannt werden. Bitte wählen Sie ein Paket aus der Tabelle unten.',
+    recommendedPrefix: 'Erkanntes System:',
+    recommendedSuffix: '. Das empfohlene Paket ist unten vorausgewählt.',
+    fallbackCta: 'Seite der neuesten Version öffnen',
+    ctaPrefix: 'Download',
+    manualHint: 'Falls Sie für einen anderen Rechner herunterladen, wählen Sie unten bitte manuell ein Paket.',
+    manualHintActive: 'Sie benötigen ein anderes Paket? Unten können Sie weiterhin manuell wählen.',
+    osWindows: 'Windows',
+    osMacos: 'macOS',
+    osLinux: 'Linux',
+  },
+  fr: {
+    title: 'Téléchargement recommandé pour cet appareil',
+    detecting: 'Détection de votre système d’exploitation...',
+    unsupported: 'Impossible de détecter un système d’exploitation de bureau pris en charge. Veuillez choisir un paquet dans le tableau ci-dessous.',
+    recommendedPrefix: 'Système détecté :',
+    recommendedSuffix: '. Le paquet recommandé est pré-sélectionné ci-dessous.',
+    fallbackCta: 'Ouvrir la page de la dernière version',
+    ctaPrefix: 'Télécharger',
+    manualHint: 'Si vous téléchargez pour une autre machine, utilisez le tableau ci-dessous pour choisir manuellement.',
+    manualHintActive: 'Besoin d’un autre paquet ? Vous pouvez toujours en choisir un dans le tableau ci-dessous.',
+    osWindows: 'Windows',
+    osMacos: 'macOS',
+    osLinux: 'Linux',
+  },
+  es: {
+    title: 'Descarga recomendada para este dispositivo',
+    detecting: 'Detectando su sistema operativo...',
+    unsupported: 'No se pudo detectar un sistema operativo de escritorio compatible. Elija un paquete en la tabla de abajo.',
+    recommendedPrefix: 'Sistema detectado:',
+    recommendedSuffix: '. El paquete recomendado está preseleccionado abajo.',
+    fallbackCta: 'Abrir la página de la última versión',
+    ctaPrefix: 'Descargar',
+    manualHint: 'Si va a descargar para otro equipo, use la tabla de abajo para elegir manualmente.',
+    manualHintActive: '¿Necesita otro paquete? Puede elegirlo manualmente en la tabla de abajo.',
+    osWindows: 'Windows',
+    osMacos: 'macOS',
+    osLinux: 'Linux',
+  },
+  it: {
+    title: 'Download consigliato per questo dispositivo',
+    detecting: 'Rilevamento del sistema operativo in corso...',
+    unsupported: 'Impossibile rilevare un sistema operativo desktop supportato. Seleziona un pacchetto dalla tabella qui sotto.',
+    recommendedPrefix: 'Sistema rilevato:',
+    recommendedSuffix: '. Il pacchetto consigliato è preselezionato qui sotto.',
+    fallbackCta: 'Apri la pagina dell’ultima versione',
+    ctaPrefix: 'Scarica',
+    manualHint: 'Se stai scaricando per un altro computer, usa la tabella qui sotto per scegliere manualmente.',
+    manualHintActive: 'Ti serve un altro pacchetto? Puoi comunque sceglierlo dalla tabella qui sotto.',
+    osWindows: 'Windows',
+    osMacos: 'macOS',
+    osLinux: 'Linux',
+  },
+} as const;
+const autoDownloadCopy = autoDownloadCopyByLocale[locale.code] ?? autoDownloadCopyByLocale.en;
 ---
 
 <!doctype html>
@@ -149,6 +275,34 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
           <a href={releaseUrl}>{text.download.releaseNotes}</a>
         </div>
 
+        <section
+          class="auto-download-card"
+          id="auto-download-card"
+          aria-live="polite"
+          data-release-url={releaseUrl}
+          data-windows-file={downloadFiles.windows}
+          data-macos-file={downloadFiles.macos}
+          data-linux-file={downloadFiles.linux}
+          data-detecting={autoDownloadCopy.detecting}
+          data-unsupported={autoDownloadCopy.unsupported}
+          data-recommended-prefix={autoDownloadCopy.recommendedPrefix}
+          data-recommended-suffix={autoDownloadCopy.recommendedSuffix}
+          data-fallback-cta={autoDownloadCopy.fallbackCta}
+          data-cta-prefix={autoDownloadCopy.ctaPrefix}
+          data-manual-hint={autoDownloadCopy.manualHint}
+          data-manual-hint-active={autoDownloadCopy.manualHintActive}
+          data-os-windows={autoDownloadCopy.osWindows}
+          data-os-macos={autoDownloadCopy.osMacos}
+          data-os-linux={autoDownloadCopy.osLinux}
+        >
+          <h3>{autoDownloadCopy.title}</h3>
+          <p class="auto-download-status" data-role="status">{autoDownloadCopy.detecting}</p>
+          <a class="primary-link auto-download-link is-disabled" data-role="cta" href={releaseUrl} aria-disabled="true">
+            {autoDownloadCopy.fallbackCta}
+          </a>
+          <p class="auto-download-hint" data-role="hint">{autoDownloadCopy.manualHint}</p>
+        </section>
+
         <div class="table-wrap">
           <table>
             <thead>
@@ -198,5 +352,62 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
         <small>© 2026 a26413768</small>
       </div>
     </footer>
+
+    <script is:inline>
+      (() => {
+        const card = document.getElementById('auto-download-card');
+        if (!card) return;
+
+        const status = card.querySelector('[data-role="status"]');
+        const cta = card.querySelector('[data-role="cta"]');
+        const hint = card.querySelector('[data-role="hint"]');
+        if (!status || !cta || !hint) return;
+
+        const releaseUrl = card.dataset.releaseUrl || '';
+        const files = {
+          windows: card.dataset.windowsFile || '',
+          macos: card.dataset.macosFile || '',
+          linux: card.dataset.linuxFile || '',
+        };
+        const osLabels = {
+          windows: card.dataset.osWindows || 'Windows',
+          macos: card.dataset.osMacos || 'macOS',
+          linux: card.dataset.osLinux || 'Linux',
+        };
+
+        const detectOS = () => {
+          const ua = navigator.userAgent.toLowerCase();
+          const platform = (
+            (navigator.userAgentData && navigator.userAgentData.platform) ||
+            navigator.platform ||
+            ''
+          ).toLowerCase();
+
+          if (platform.includes('win') || ua.includes('windows')) return 'windows';
+          if (platform.includes('mac') || platform.includes('darwin') || ua.includes('mac os')) return 'macos';
+          if (platform.includes('linux') || ua.includes('linux') || ua.includes('x11')) return 'linux';
+          return null;
+        };
+
+        const os = detectOS();
+        if (!os || !files[os]) {
+          status.textContent = card.dataset.unsupported || '';
+          cta.textContent = card.dataset.fallbackCta || '';
+          cta.setAttribute('href', releaseUrl);
+          cta.setAttribute('aria-disabled', 'true');
+          cta.classList.add('is-disabled');
+          hint.textContent = card.dataset.manualHint || '';
+          return;
+        }
+
+        const file = files[os];
+        status.textContent = `${card.dataset.recommendedPrefix || ''} ${osLabels[os]}${card.dataset.recommendedSuffix || ''}`;
+        cta.textContent = `${card.dataset.ctaPrefix || 'Download'} ${file}`;
+        cta.setAttribute('href', `${releaseUrl}/download/${file}`);
+        cta.removeAttribute('aria-disabled');
+        cta.classList.remove('is-disabled');
+        hint.textContent = card.dataset.manualHintActive || '';
+      })();
+    </script>
   </body>
 </html>
