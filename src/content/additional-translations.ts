@@ -45,7 +45,7 @@ export const zhCN: SiteText = {
     releaseNotes: '版本说明与校验码',
     columns: { platform: '平台', requirements: '系统需求', package: '下载文件', notes: '说明' },
     platforms: [
-      { platform: 'Windows', requirements: 'Windows 10 或 11（64 位）', file: 'MapStacker-windows-x64.zip', notes: '解压后运行 MapStacker.exe。' },
+      { platform: 'Windows', requirements: 'Windows 10 或 11（64 位）', file: 'MapStacker-windows-x64.zip', notes: '解压后运行 MapStacker.exe。应用程序未经签名；若 SmartScreen 出现警告，请点击“更多信息”再选择“仍要运行”。' },
       { platform: 'macOS（Apple Silicon）', requirements: 'Apple Silicon（arm64）', file: 'MapStacker-macos-arm64.zip', notes: '应用程序未经签名；首次启动时请右键单击并选择“打开”。' },
       { platform: 'macOS（Intel）', requirements: 'Intel（x64）', file: 'MapStacker-macos-x64.zip', notes: '应用程序未经签名；首次启动时请右键单击并选择“打开”。' },
       { platform: 'Linux', requirements: 'x64、glibc 2.31 或更新版本', file: 'MapStacker-linux-x64.zip', notes: '需要支持 Qt xcb 的 X11 图形环境。' },
@@ -109,7 +109,7 @@ export const ja: SiteText = {
     releaseNotes: 'リリースノートとチェックサム',
     columns: { platform: 'プラットフォーム', requirements: '動作環境', package: 'パッケージ', notes: '備考' },
     platforms: [
-      { platform: 'Windows', requirements: 'Windows 10 または 11（64 ビット）', file: 'MapStacker-windows-x64.zip', notes: 'アーカイブを展開して MapStacker.exe を実行してください。' },
+      { platform: 'Windows', requirements: 'Windows 10 または 11（64 ビット）', file: 'MapStacker-windows-x64.zip', notes: 'アーカイブを展開して MapStacker.exe を実行してください。署名なしアプリケーションです。SmartScreen の警告が表示された場合は「詳細情報」→「実行」を選択してください。' },
       { platform: 'macOS（Apple Silicon）', requirements: 'Apple Silicon（arm64）', file: 'MapStacker-macos-arm64.zip', notes: '署名なしアプリケーションです。初回起動時は右クリックして「開く」を選択してください。' },
       { platform: 'macOS（Intel）', requirements: 'Intel（x64）', file: 'MapStacker-macos-x64.zip', notes: '署名なしアプリケーションです。初回起動時は右クリックして「開く」を選択してください。' },
       { platform: 'Linux', requirements: 'x64、glibc 2.31 以降', file: 'MapStacker-linux-x64.zip', notes: 'Qt xcb をサポートする X11 グラフィック環境が必要です。' },
@@ -173,7 +173,7 @@ export const es: SiteText = {
     releaseNotes: 'Notas de versión y sumas de verificación',
     columns: { platform: 'Plataforma', requirements: 'Requisitos', package: 'Paquete', notes: 'Notas' },
     platforms: [
-      { platform: 'Windows', requirements: 'Windows 10 u 11 (64 bits)', file: 'MapStacker-windows-x64.zip', notes: 'Descomprimir el archivo y ejecutar MapStacker.exe.' },
+      { platform: 'Windows', requirements: 'Windows 10 u 11 (64 bits)', file: 'MapStacker-windows-x64.zip', notes: 'Descomprimir el archivo y ejecutar MapStacker.exe. Aplicación sin firmar: si SmartScreen muestra una advertencia, haga clic en Más información y luego en Ejecutar de todas formas.' },
       { platform: 'macOS (Apple Silicon)', requirements: 'Apple Silicon (arm64)', file: 'MapStacker-macos-arm64.zip', notes: 'Aplicación sin firmar. En el primer inicio, haga clic derecho y elija Abrir.' },
       { platform: 'macOS (Intel)', requirements: 'Intel (x64)', file: 'MapStacker-macos-x64.zip', notes: 'Aplicación sin firmar. En el primer inicio, haga clic derecho y elija Abrir.' },
       { platform: 'Linux', requirements: 'x64, glibc 2.31 o posterior', file: 'MapStacker-linux-x64.zip', notes: 'Requiere un entorno gráfico X11 con soporte para Qt xcb.' },
@@ -237,7 +237,7 @@ export const it: SiteText = {
     releaseNotes: 'Note di rilascio e checksum',
     columns: { platform: 'Piattaforma', requirements: 'Requisiti', package: 'Pacchetto', notes: 'Note' },
     platforms: [
-      { platform: 'Windows', requirements: 'Windows 10 o 11 (64 bit)', file: 'MapStacker-windows-x64.zip', notes: "Estrarre l'archivio ed eseguire MapStacker.exe." },
+      { platform: 'Windows', requirements: 'Windows 10 o 11 (64 bit)', file: 'MapStacker-windows-x64.zip', notes: "Estrarre l'archivio ed eseguire MapStacker.exe. Applicazione non firmata: se SmartScreen mostra un avviso, fare clic su Ulteriori informazioni e poi su Esegui comunque." },
       { platform: 'macOS (Apple Silicon)', requirements: 'Apple Silicon (arm64)', file: 'MapStacker-macos-arm64.zip', notes: 'Applicazione non firmata. Al primo avvio, fare clic con il tasto destro e scegliere Apri.' },
       { platform: 'macOS (Intel)', requirements: 'Intel (x64)', file: 'MapStacker-macos-x64.zip', notes: 'Applicazione non firmata. Al primo avvio, fare clic con il tasto destro e scegliere Apri.' },
       { platform: 'Linux', requirements: 'x64, glibc 2.31 o versione successiva', file: 'MapStacker-linux-x64.zip', notes: 'Richiede un ambiente grafico X11 con supporto Qt xcb.' },
