@@ -3,12 +3,12 @@ import type { SiteText } from './translations';
 export const zhCN: SiteText = {
   lang: 'zh-CN',
   pageTitle: 'MapStacker',
-  description: 'MapStacker 是用于叠合月球与行星单色或彩色 SER 影像序列的桌面应用程序。',
+  description: 'MapStacker 是用于叠合月球与行星单色或彩色 SER／AVI 影像序列的桌面应用程序。',
   languageLabel: '语言',
   nav: { features: '功能', download: '下载', support: '支持' },
   intro: {
-    summary: 'MapStacker 是用于叠合月球与行星单色或彩色 SER 影像序列的桌面应用程序。',
-    details: '程序提供帧品质分析、全局稳定化、多重对齐点、局部选帧、网格叠合、Drizzle、色彩对齐与 16 位 TIFF 输出。',
+    summary: 'MapStacker 是用于叠合月球与行星单色或彩色 SER／AVI 影像序列的桌面应用程序。',
+    details: '程序提供帧品质分析、全局稳定化、多重对齐点、局部选帧、网格叠合、Drizzle、色彩对齐,以及 16 位 TIFF、PNG、FITS 与 8 位 BMP 输出。',
     download: '下载 MapStacker',
     latestRelease: '查看最新版本',
     beta: '试用最新 Beta 版',
@@ -22,21 +22,21 @@ export const zhCN: SiteText = {
   features: {
     title: '功能',
     groups: [
-      { title: '输入与选帧', items: ['支持单色、RGB 与 Bayer CFA 的 SER 输入', '在影像重采样前进行帧品质排序', '手动排除帧及选择参考帧', '各对齐点独立进行局部选帧'] },
+      { title: '输入与选帧', items: ['支持单色、RGB 与 Bayer CFA 的 SER／AVI 输入', '在影像重采样前进行帧品质排序', '手动排除帧及选择参考帧', '各对齐点独立进行局部选帧'] },
       { title: '对齐', items: ['使用相位相关或亮度重心进行全局帧稳定化', '使用质心 Voronoi 网格自动配置对齐点', '具离群值处理的亚像素局部对齐'] },
-      { title: '叠合与色彩', items: ['分段仿射网格叠合', '单色、RGB 与 Bayer 数据的 Drizzle 处理', '多种全局与局部 RGB 对齐方式', '批量处理文件夹中的 SER 文件'] },
-      { title: '输出', items: ['自动裁切与可选的输出居中', '16 位 TIFF 输出', '包含设置、来源元数据、选帧及对齐点的文本附属文件'] },
+      { title: '叠合与色彩', items: ['分段仿射网格叠合', '单色、RGB 与 Bayer 数据的 Drizzle 处理', '多种全局与局部 RGB 对齐方式', '批量处理文件夹中的 SER／AVI 文件'] },
+      { title: '输出', items: ['自动裁切与可选的输出居中', '16 位 TIFF、PNG、FITS 及 8 位 BMP 输出', '包含设置、来源元数据、选帧及对齐点的文本附属文件'] },
     ],
   },
   workflow: {
     title: '基本操作流程',
     steps: [
-      { title: '打开 SER 文件。', text: 'MapStacker 会读取影像序列及其元数据。' },
+      { title: '打开 SER／AVI 文件。', text: 'MapStacker 会读取影像序列及其元数据。' },
       { title: '分析帧品质。', text: '查看品质排序，并视需要排除不适合的帧。' },
       { title: '稳定影像序列。', text: '估算并校正全局移动。' },
       { title: '配置对齐点。', text: '使用自动配置，或手动调整对齐点。' },
       { title: '执行叠合。', text: '选择帧比例、叠合方式及色彩选项。' },
-      { title: '导出结果。', text: '将影像保存为 16 位 TIFF，并保留处理记录。' },
+      { title: '导出结果。', text: '将影像保存为 16 位 TIFF、PNG、FITS 或 8 位 BMP，并保留处理记录。' },
     ],
   },
   download: {
@@ -66,12 +66,12 @@ export const zhCN: SiteText = {
 export const ja: SiteText = {
   lang: 'ja',
   pageTitle: 'MapStacker',
-  description: 'MapStacker は月面・惑星の SER 動画からフレームをスタック処理するデスクトップアプリケーションです。',
+  description: 'MapStacker は月面・惑星の SER／AVI 動画からフレームをスタック処理するデスクトップアプリケーションです。',
   languageLabel: '言語',
   nav: { features: '機能', download: 'ダウンロード', support: 'サポート' },
   intro: {
-    summary: 'MapStacker は SER ファイルに格納された月面・惑星のモノクロおよびカラー動画をスタック処理するデスクトップアプリケーションです。',
-    details: 'フレーム品質解析、グローバル安定化、複数のアライメントポイント、局所フレーム選択、メッシュスタッキング、Drizzle、カラーアライメント、16 ビット TIFF 出力を備えています。',
+    summary: 'MapStacker は SER または AVI ファイルに格納された月面・惑星のモノクロおよびカラー動画をスタック処理するデスクトップアプリケーションです。',
+    details: 'フレーム品質解析、グローバル安定化、複数のアライメントポイント、局所フレーム選択、メッシュスタッキング、Drizzle、カラーアライメント、16 ビット TIFF・PNG・FITS および 8 ビット BMP 出力を備えています。',
     download: 'MapStacker をダウンロード',
     latestRelease: '最新リリースを確認',
     beta: '最新ベータ版を試す',
@@ -85,21 +85,21 @@ export const ja: SiteText = {
   features: {
     title: '機能',
     groups: [
-      { title: '入力とフレーム選択', items: ['モノクロ・RGB・Bayer CFA の SER 入力に対応', 'リサンプリング前のフレーム品質ランキング', 'フレームの手動除外および基準フレームの選択', 'アライメントポイントごとに独立した局所フレーム選択'] },
+      { title: '入力とフレーム選択', items: ['モノクロ・RGB・Bayer CFA の SER／AVI 入力に対応', 'リサンプリング前のフレーム品質ランキング', 'フレームの手動除外および基準フレームの選択', 'アライメントポイントごとに独立した局所フレーム選択'] },
       { title: 'アライメント', items: ['位相相関または重心を用いたグローバルフレーム安定化', '重心ボロノイグリッドによるアライメントポイントの自動配置', '外れ値処理を備えたサブピクセル局所アライメント'] },
-      { title: 'スタッキングとカラー', items: ['区分的アフィンメッシュスタッキング', 'モノクロ・RGB・Bayer データへの Drizzle 処理', '複数のグローバルおよびローカル RGB アライメント手法', 'フォルダ内の SER ファイルのバッチ処理'] },
-      { title: '出力', items: ['自動トリミングとオプションの出力センタリング', '16 ビット TIFF 出力', '設定・ソースメタデータ・フレーム選択・アライメントポイントを記録したテキストサイドカー'] },
+      { title: 'スタッキングとカラー', items: ['区分的アフィンメッシュスタッキング', 'モノクロ・RGB・Bayer データへの Drizzle 処理', '複数のグローバルおよびローカル RGB アライメント手法', 'フォルダ内の SER／AVI ファイルのバッチ処理'] },
+      { title: '出力', items: ['自動トリミングとオプションの出力センタリング', '16 ビット TIFF・PNG・FITS および 8 ビット BMP 出力', '設定・ソースメタデータ・フレーム選択・アライメントポイントを記録したテキストサイドカー'] },
     ],
   },
   workflow: {
     title: '基本的なワークフロー',
     steps: [
-      { title: 'SER ファイルを開く。', text: 'MapStacker が動画とそのメタデータを読み込みます。' },
+      { title: 'SER または AVI ファイルを開く。', text: 'MapStacker が動画とそのメタデータを読み込みます。' },
       { title: 'フレーム品質を解析する。', text: 'ランキングを確認し、不適切なフレームを必要に応じて除外します。' },
       { title: 'シーケンスを安定化する。', text: 'グローバルな動きを推定して補正します。' },
       { title: 'アライメントポイントを配置する。', text: '自動配置を使用するか、手動でポイントを調整します。' },
       { title: 'スタックを実行する。', text: 'フレーム割合、スタッキング手法、カラーオプションを選択します。' },
-      { title: '結果をエクスポートする。', text: '処理記録とともに画像を 16 ビット TIFF として保存します。' },
+      { title: '結果をエクスポートする。', text: '処理記録とともに画像を 16 ビット TIFF・PNG・FITS または 8 ビット BMP として保存します。' },
     ],
   },
   download: {
@@ -129,12 +129,12 @@ export const ja: SiteText = {
 export const es: SiteText = {
   lang: 'es',
   pageTitle: 'MapStacker',
-  description: 'MapStacker es una aplicación de escritorio para apilar secuencias de imágenes SER lunares y planetarias.',
+  description: 'MapStacker es una aplicación de escritorio para apilar secuencias de imágenes SER y AVI lunares y planetarias.',
   languageLabel: 'Idioma',
   nav: { features: 'Funciones', download: 'Descargar', support: 'Soporte' },
   intro: {
-    summary: 'MapStacker es una aplicación de escritorio para apilar secuencias de imágenes lunares o planetarias en monocromo y color almacenadas en archivos SER.',
-    details: 'Ofrece análisis de calidad de fotogramas, estabilización global, múltiples puntos de alineación, selección local de fotogramas, apilado por malla, Drizzle, alineación de color y salida en TIFF de 16 bits.',
+    summary: 'MapStacker es una aplicación de escritorio para apilar secuencias de imágenes lunares o planetarias en monocromo y color almacenadas en archivos SER o AVI.',
+    details: 'Ofrece análisis de calidad de fotogramas, estabilización global, múltiples puntos de alineación, selección local de fotogramas, apilado por malla, Drizzle, alineación de color y salida en TIFF, PNG y FITS de 16 bits (además de BMP de 8 bits).',
     download: 'Descargar MapStacker',
     latestRelease: 'Ver la última versión',
     beta: 'Probar la última beta',
@@ -148,21 +148,21 @@ export const es: SiteText = {
   features: {
     title: 'Funciones',
     groups: [
-      { title: 'Entrada y selección de fotogramas', items: ['Entrada SER en monocromo, RGB y Bayer CFA', 'Clasificación de calidad de fotogramas antes del remuestreo', 'Exclusión manual de fotogramas y selección del fotograma de referencia', 'Selección local de fotogramas independiente por punto de alineación'] },
+      { title: 'Entrada y selección de fotogramas', items: ['Entrada SER y AVI en monocromo, RGB y Bayer CFA', 'Clasificación de calidad de fotogramas antes del remuestreo', 'Exclusión manual de fotogramas y selección del fotograma de referencia', 'Selección local de fotogramas independiente por punto de alineación'] },
       { title: 'Alineación', items: ['Estabilización global mediante correlación de fase o centro de gravedad', 'Colocación automática de puntos de alineación con una cuadrícula de Voronoi centroidal', 'Alineación local sub-píxel con gestión de valores atípicos'] },
-      { title: 'Apilado y color', items: ['Apilado por malla afín por partes', 'Procesado Drizzle para datos en monocromo, RGB y Bayer', 'Varios métodos de alineación RGB globales y locales', 'Procesado por lotes de archivos SER en una carpeta'] },
-      { title: 'Salida', items: ['Recorte automático y centrado de salida opcional', 'Salida en TIFF de 16 bits', 'Archivo sidecar de texto con ajustes, metadatos fuente, selección de fotogramas y puntos de alineación'] },
+      { title: 'Apilado y color', items: ['Apilado por malla afín por partes', 'Procesado Drizzle para datos en monocromo, RGB y Bayer', 'Varios métodos de alineación RGB globales y locales', 'Procesado por lotes de archivos SER y AVI en una carpeta'] },
+      { title: 'Salida', items: ['Recorte automático y centrado de salida opcional', 'Salida en TIFF, PNG y FITS de 16 bits, además de BMP de 8 bits', 'Archivo sidecar de texto con ajustes, metadatos fuente, selección de fotogramas y puntos de alineación'] },
     ],
   },
   workflow: {
     title: 'Flujo de trabajo habitual',
     steps: [
-      { title: 'Abrir un archivo SER.', text: 'MapStacker lee la captura y sus metadatos.' },
+      { title: 'Abrir un archivo SER o AVI.', text: 'MapStacker lee la captura y sus metadatos.' },
       { title: 'Analizar la calidad de los fotogramas.', text: 'Revisar la clasificación y excluir fotogramas inadecuados si es necesario.' },
       { title: 'Estabilizar la secuencia.', text: 'Estimar y corregir el movimiento global.' },
       { title: 'Colocar los puntos de alineación.', text: 'Usar la colocación automática o ajustar los puntos manualmente.' },
       { title: 'Ejecutar el apilado.', text: 'Elegir los porcentajes de fotogramas, el método de apilado y las opciones de color.' },
-      { title: 'Exportar el resultado.', text: 'Guardar la imagen como TIFF de 16 bits con su registro de procesado.' },
+      { title: 'Exportar el resultado.', text: 'Guardar la imagen como TIFF, PNG o FITS de 16 bits (o BMP de 8 bits) con su registro de procesado.' },
     ],
   },
   download: {
@@ -192,12 +192,12 @@ export const es: SiteText = {
 export const it: SiteText = {
   lang: 'it',
   pageTitle: 'MapStacker',
-  description: "MapStacker è un'applicazione desktop per lo stacking di sequenze di immagini SER lunari e planetarie.",
+  description: "MapStacker è un'applicazione desktop per lo stacking di sequenze di immagini SER e AVI lunari e planetarie.",
   languageLabel: 'Lingua',
   nav: { features: 'Funzionalità', download: 'Scarica', support: 'Supporto' },
   intro: {
-    summary: "MapStacker è un'applicazione desktop per lo stacking di sequenze di immagini lunari o planetarie in monocromo e colore memorizzate in file SER.",
-    details: 'Offre analisi della qualità dei fotogrammi, stabilizzazione globale, punti di allineamento multipli, selezione locale dei fotogrammi, stacking a griglia, Drizzle, allineamento del colore e output in TIFF a 16 bit.',
+    summary: "MapStacker è un'applicazione desktop per lo stacking di sequenze di immagini lunari o planetarie in monocromo e colore memorizzate in file SER o AVI.",
+    details: 'Offre analisi della qualità dei fotogrammi, stabilizzazione globale, punti di allineamento multipli, selezione locale dei fotogrammi, stacking a griglia, Drizzle, allineamento del colore e output in TIFF, PNG e FITS a 16 bit (oltre a BMP a 8 bit).',
     download: 'Scarica MapStacker',
     latestRelease: "Visualizza l'ultima versione",
     beta: "Prova l'ultima beta",
@@ -211,21 +211,21 @@ export const it: SiteText = {
   features: {
     title: 'Funzionalità',
     groups: [
-      { title: 'Input e selezione dei fotogrammi', items: ['Input SER in monocromo, RGB e Bayer CFA', 'Classificazione della qualità dei fotogrammi prima del ricampionamento', 'Esclusione manuale dei fotogrammi e selezione del fotogramma di riferimento', 'Selezione locale dei fotogrammi indipendente per ogni punto di allineamento'] },
+      { title: 'Input e selezione dei fotogrammi', items: ['Input SER e AVI in monocromo, RGB e Bayer CFA', 'Classificazione della qualità dei fotogrammi prima del ricampionamento', 'Esclusione manuale dei fotogrammi e selezione del fotogramma di riferimento', 'Selezione locale dei fotogrammi indipendente per ogni punto di allineamento'] },
       { title: 'Allineamento', items: ['Stabilizzazione globale dei fotogrammi tramite correlazione di fase o centro di gravità', 'Posizionamento automatico dei punti di allineamento con una griglia di Voronoi centroidale', 'Allineamento locale sub-pixel con gestione dei valori anomali'] },
-      { title: 'Stacking e colore', items: ['Stacking a griglia affine a tratti', 'Elaborazione Drizzle per dati in monocromo, RGB e Bayer', 'Diversi metodi di allineamento RGB globali e locali', 'Elaborazione in batch di file SER in una cartella'] },
-      { title: 'Output', items: ["Ritaglio automatico e centratura dell'output opzionale", 'Output in TIFF a 16 bit', 'File sidecar testuale con impostazioni, metadati sorgente, selezione dei fotogrammi e punti di allineamento'] },
+      { title: 'Stacking e colore', items: ['Stacking a griglia affine a tratti', 'Elaborazione Drizzle per dati in monocromo, RGB e Bayer', 'Diversi metodi di allineamento RGB globali e locali', 'Elaborazione in batch di file SER e AVI in una cartella'] },
+      { title: 'Output', items: ["Ritaglio automatico e centratura dell'output opzionale", 'Output in TIFF, PNG e FITS a 16 bit, oltre a BMP a 8 bit', 'File sidecar testuale con impostazioni, metadati sorgente, selezione dei fotogrammi e punti di allineamento'] },
     ],
   },
   workflow: {
     title: 'Flusso di lavoro tipico',
     steps: [
-      { title: 'Aprire un file SER.', text: 'MapStacker legge la ripresa e i relativi metadati.' },
+      { title: 'Aprire un file SER o AVI.', text: 'MapStacker legge la ripresa e i relativi metadati.' },
       { title: 'Analizzare la qualità dei fotogrammi.', text: 'Controllare la classifica ed escludere i fotogrammi non idonei se necessario.' },
       { title: 'Stabilizzare la sequenza.', text: 'Stimare e correggere il movimento globale.' },
       { title: 'Posizionare i punti di allineamento.', text: 'Utilizzare il posizionamento automatico o regolare i punti manualmente.' },
       { title: 'Eseguire lo stacking.', text: 'Scegliere le percentuali di fotogrammi, il metodo di stacking e le opzioni di colore.' },
-      { title: 'Esportare il risultato.', text: "Salvare l'immagine come TIFF a 16 bit con il relativo registro di elaborazione." },
+      { title: 'Esportare il risultato.', text: "Salvare l'immagine come TIFF, PNG o FITS a 16 bit (o BMP a 8 bit) con il relativo registro di elaborazione." },
     ],
   },
   download: {
