@@ -26,11 +26,12 @@ const downloadFiles = text.download.platforms.reduce(
   (acc, item) => {
     const file = item.file;
     if (file.includes('windows')) acc.windows = file;
-    if (file.includes('macos')) acc.macos = file;
-    if (file.includes('linux')) acc.linux = file;
+    else if (file.includes('macos-arm64')) acc.macosArm64 = file;
+    else if (file.includes('macos-x64')) acc.macosX64 = file;
+    else if (file.includes('linux')) acc.linux = file;
     return acc;
   },
-  { windows: '', macos: '', linux: '' },
+  { windows: '', macosArm64: '', macosX64: '', linux: '' },
 );
 
 const autoDownloadCopyByLocale = {
@@ -281,7 +282,8 @@ const autoDownloadCopy = autoDownloadCopyByLocale[locale.code] ?? autoDownloadCo
           aria-live="polite"
           data-release-url={releaseUrl}
           data-windows-file={downloadFiles.windows}
-          data-macos-file={downloadFiles.macos}
+          data-macos-arm64-file={downloadFiles.macosArm64}
+          data-macos-x64-file={downloadFiles.macosX64}
           data-linux-file={downloadFiles.linux}
           data-detecting={autoDownloadCopy.detecting}
           data-unsupported={autoDownloadCopy.unsupported}
@@ -354,7 +356,7 @@ const autoDownloadCopy = autoDownloadCopyByLocale[locale.code] ?? autoDownloadCo
     </footer>
 
     <script is:inline>
-      (() => {
+      (async () => {
         const card = document.getElementById('auto-download-card');
         if (!card) return;
 
@@ -366,7 +368,8 @@ const autoDownloadCopy = autoDownloadCopyByLocale[locale.code] ?? autoDownloadCo
         const releaseUrl = card.dataset.releaseUrl || '';
         const files = {
           windows: card.dataset.windowsFile || '',
-          macos: card.dataset.macosFile || '',
+          macosArm64: card.dataset.macosArm64File || '',
+          macosX64: card.dataset.macosX64File || '',
           linux: card.dataset.linuxFile || '',
         };
         const osLabels = {
@@ -389,8 +392,27 @@ const autoDownloadCopy = autoDownloadCopyByLocale[locale.code] ?? autoDownloadCo
           return null;
         };
 
+        const resolveMacFile = async () => {
+          // Browsers can't reliably report the Mac CPU architecture
+          // synchronously. Prefer the native arm64 build when the architecture
+          // hint reports Apple Silicon; otherwise fall back to the x64 build,
+          // which runs on Intel Macs natively and on Apple Silicon via Rosetta.
+          try {
+            const uaData = navigator.userAgentData;
+            if (uaData && uaData.getHighEntropyValues) {
+              const hints = await uaData.getHighEntropyValues(['architecture']);
+              if (hints && hints.architecture === 'arm' && files.macosArm64) return files.macosArm64;
+            }
+          } catch (err) {}
+          return files.macosX64 || files.macosArm64;
+        };
+
+        const resolveFile = (os) =>
+          os === 'macos' ? resolveMacFile() : Promise.resolve(files[os] || '');
+
         const os = detectOS();
-        if (!os || !files[os]) {
+        const file = os ? await resolveFile(os) : '';
+        if (!os || !file) {
           status.textContent = card.dataset.unsupported || '';
           cta.textContent = card.dataset.fallbackCta || '';
           cta.setAttribute('href', releaseUrl);
@@ -400,7 +422,6 @@ const autoDownloadCopy = autoDownloadCopyByLocale[locale.code] ?? autoDownloadCo
           return;
         }
 
-        const file = files[os];
         status.textContent = `${card.dataset.recommendedPrefix || ''} ${osLabels[os]}${card.dataset.recommendedSuffix || ''}`;
         cta.textContent = `${card.dataset.ctaPrefix || 'Download'} ${file}`;
         cta.setAttribute('href', `${releaseUrl}/download/${file}`);

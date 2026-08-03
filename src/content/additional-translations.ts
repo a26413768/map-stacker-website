@@ -46,7 +46,8 @@ export const zhCN: SiteText = {
     columns: { platform: '平台', requirements: '系统需求', package: '下载文件', notes: '说明' },
     platforms: [
       { platform: 'Windows', requirements: 'Windows 10 或 11（64 位）', file: 'MapStacker-windows-x64.zip', notes: '解压后运行 MapStacker.exe。' },
-      { platform: 'macOS', requirements: 'Apple Silicon（arm64）', file: 'MapStacker-macos-arm64.zip', notes: '应用程序未经签名；首次启动时请右键单击并选择“打开”。' },
+      { platform: 'macOS（Apple Silicon）', requirements: 'Apple Silicon（arm64）', file: 'MapStacker-macos-arm64.zip', notes: '应用程序未经签名；首次启动时请右键单击并选择“打开”。' },
+      { platform: 'macOS（Intel）', requirements: 'Intel（x64）', file: 'MapStacker-macos-x64.zip', notes: '应用程序未经签名；首次启动时请右键单击并选择“打开”。' },
       { platform: 'Linux', requirements: 'x64、glibc 2.31 或更新版本', file: 'MapStacker-linux-x64.zip', notes: '需要支持 Qt xcb 的 X11 图形环境。' },
     ],
     archiveNoteBefore: '程序以 ZIP 压缩包发布。如需验证文件，请从版本页面下载对应的',
@@ -109,7 +110,8 @@ export const ja: SiteText = {
     columns: { platform: 'プラットフォーム', requirements: '動作環境', package: 'パッケージ', notes: '備考' },
     platforms: [
       { platform: 'Windows', requirements: 'Windows 10 または 11（64 ビット）', file: 'MapStacker-windows-x64.zip', notes: 'アーカイブを展開して MapStacker.exe を実行してください。' },
-      { platform: 'macOS', requirements: 'Apple Silicon（arm64）', file: 'MapStacker-macos-arm64.zip', notes: '署名なしアプリケーションです。初回起動時は右クリックして「開く」を選択してください。' },
+      { platform: 'macOS（Apple Silicon）', requirements: 'Apple Silicon（arm64）', file: 'MapStacker-macos-arm64.zip', notes: '署名なしアプリケーションです。初回起動時は右クリックして「開く」を選択してください。' },
+      { platform: 'macOS（Intel）', requirements: 'Intel（x64）', file: 'MapStacker-macos-x64.zip', notes: '署名なしアプリケーションです。初回起動時は右クリックして「開く」を選択してください。' },
       { platform: 'Linux', requirements: 'x64、glibc 2.31 以降', file: 'MapStacker-linux-x64.zip', notes: 'Qt xcb をサポートする X11 グラフィック環境が必要です。' },
     ],
     archiveNoteBefore: 'パッケージは ZIP アーカイブとして配布されています。アーカイブを検証する場合は、リリースページから対応する',
@@ -172,7 +174,8 @@ export const es: SiteText = {
     columns: { platform: 'Plataforma', requirements: 'Requisitos', package: 'Paquete', notes: 'Notas' },
     platforms: [
       { platform: 'Windows', requirements: 'Windows 10 u 11 (64 bits)', file: 'MapStacker-windows-x64.zip', notes: 'Descomprimir el archivo y ejecutar MapStacker.exe.' },
-      { platform: 'macOS', requirements: 'Apple Silicon (arm64)', file: 'MapStacker-macos-arm64.zip', notes: 'Aplicación sin firmar. En el primer inicio, haga clic derecho y elija Abrir.' },
+      { platform: 'macOS (Apple Silicon)', requirements: 'Apple Silicon (arm64)', file: 'MapStacker-macos-arm64.zip', notes: 'Aplicación sin firmar. En el primer inicio, haga clic derecho y elija Abrir.' },
+      { platform: 'macOS (Intel)', requirements: 'Intel (x64)', file: 'MapStacker-macos-x64.zip', notes: 'Aplicación sin firmar. En el primer inicio, haga clic derecho y elija Abrir.' },
       { platform: 'Linux', requirements: 'x64, glibc 2.31 o posterior', file: 'MapStacker-linux-x64.zip', notes: 'Requiere un entorno gráfico X11 con soporte para Qt xcb.' },
     ],
     archiveNoteBefore: 'Los paquetes se distribuyen como archivos ZIP. Descargue el archivo',
@@ -235,7 +238,8 @@ export const it: SiteText = {
     columns: { platform: 'Piattaforma', requirements: 'Requisiti', package: 'Pacchetto', notes: 'Note' },
     platforms: [
       { platform: 'Windows', requirements: 'Windows 10 o 11 (64 bit)', file: 'MapStacker-windows-x64.zip', notes: "Estrarre l'archivio ed eseguire MapStacker.exe." },
-      { platform: 'macOS', requirements: 'Apple Silicon (arm64)', file: 'MapStacker-macos-arm64.zip', notes: 'Applicazione non firmata. Al primo avvio, fare clic con il tasto destro e scegliere Apri.' },
+      { platform: 'macOS (Apple Silicon)', requirements: 'Apple Silicon (arm64)', file: 'MapStacker-macos-arm64.zip', notes: 'Applicazione non firmata. Al primo avvio, fare clic con il tasto destro e scegliere Apri.' },
+      { platform: 'macOS (Intel)', requirements: 'Intel (x64)', file: 'MapStacker-macos-x64.zip', notes: 'Applicazione non firmata. Al primo avvio, fare clic con il tasto destro e scegliere Apri.' },
       { platform: 'Linux', requirements: 'x64, glibc 2.31 o versione successiva', file: 'MapStacker-linux-x64.zip', notes: 'Richiede un ambiente grafico X11 con supporto Qt xcb.' },
     ],
     archiveNoteBefore: 'I pacchetti sono distribuiti come archivi ZIP. Scarica il file',
